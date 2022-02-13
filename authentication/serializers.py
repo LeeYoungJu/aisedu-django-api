@@ -20,6 +20,11 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         access.set_exp(lifetime=access_lifetime)
         data['refresh'] = text_type(refresh)
         data['access'] = text_type(access)
+        data['user'] = {
+            'id': user.username,
+            'name': user.first_name,
+            'url': user.url,
+        }
         return data
 
     def validate(self, attrs):
